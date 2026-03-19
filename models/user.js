@@ -1,10 +1,26 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  userId: Number,
-  name: String,
-  balance: { type: Number, default: 0 },
-  banned: { type: Boolean, default: false }
-});
+  
+  telegramId: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  username: {
+    type: String,
+    default: null
+  },
+  firstName: {
+    type: String,
+    default: "Player"
+  },
+  balance: {
+    type: Number,
+    default: 0
+  }
+})
 
-module.exports = mongoose.model("User", userSchema);
+
+
+export default  mongoose.model("User", userSchema);

@@ -1,6 +1,18 @@
-module.exports = {
-  BOT_TOKEN: "8428988318:AAFGwEXVUhjyWfvLH6ck5tBA7KH3Q8VFado",
-  MONGO_URI: "https://ludo-webapp2.vercel.app",
-//   GROUP_ID: -100XXXXXXXXXX,
-  ADMIN_ID: 123456789
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export const BOT_TOKEN = process.env.BOT_TOKEN;
+export const PROVIDER_TOKEN = process.env.PROVIDER_TOKEN;
+
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("✅ MongoDB Connected");
+  } catch (err) {
+    console.log("DB Error:", err.message);
+    process.exit(1);
+  }
 };
+
